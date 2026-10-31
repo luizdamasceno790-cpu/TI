@@ -1,0 +1,30 @@
+import { Router } from 'express';
+import { exigirLogin } from '../auth.js';
+import { publico, privado } from './auth.js';
+import config from './config.js';
+import clientes from './clientes.js';
+import produtos from './produtos.js';
+import promocoes from './promocoes.js';
+import pedidos from './pedidos.js';
+import { ingredientes, estoque } from './estoque.js';
+import receitas from './receitas.js';
+import producoes from './producoes.js';
+import compras from './compras.js';
+import dashboard from './dashboard.js';
+
+const api = Router();
+api.use('/auth', publico);
+api.use('/auth', privado);
+api.use(exigirLogin); // tudo abaixo exige login
+api.use('/', config);
+api.use('/clientes', clientes);
+api.use('/produtos', produtos);
+api.use('/promocoes', promocoes);
+api.use('/pedidos', pedidos);
+api.use('/ingredientes', ingredientes);
+api.use('/estoque', estoque);
+api.use('/receitas', receitas);
+api.use('/producoes', producoes);
+api.use('/compras', compras);
+api.use('/dashboard', dashboard);
+export default api;
